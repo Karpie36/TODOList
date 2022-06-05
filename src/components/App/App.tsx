@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import './App.css';
+import './App.scss';
 import Form from '../Form/Form';
-import Tasks from '../Tasks/Tasks'
+import TasksList from '../TasksList/TasksList';
 
 function App() {
   const [tasksArr, setTasksArr] = useState<string[]>([]);
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Form tasksArr={tasksArr} setTasksArr={setTasksArr}></Form>
-      <Tasks tasks={tasksArr}></Tasks>
+      <TasksList tasks={tasksArr}></TasksList>
     </div>
   );
 }

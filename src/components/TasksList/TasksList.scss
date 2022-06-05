@@ -1,0 +1,14 @@
+
+.TasksList {
+    width: -webkit-fill-available;
+    height: 200px;
+    background-color: #ddd;
+    border-radius: 3px;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+    .Task {
+        width: fit-content;
+        margin: auto;
+    }
+}

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
+import './Form.scss';
 
 interface FormInterface {
     tasksArr: string[],
@@ -19,10 +20,10 @@ function Form(props: FormInterface) {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="toDo">Task to do:</label>
+        <form className="TaskForm" onSubmit={handleSubmit}>
+            <label htmlFor="toDo">Task to do</label>
             <input type="text" name="toDo" onChange={handleChange}/>
-            <input type="submit" />
+            <input type="submit" value="Submit"/>
         </form>
     )
 }

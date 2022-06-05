@@ -1,9 +1,9 @@
 import React from "react";
-import './Tasks.scss';
+import './TasksList.scss';
 
-function Tasks(props: {tasks: string[]}) {
+function TasksList(props: {tasks: string[]}) {
     return (
-        <ul>
+        <ul className="TasksList">
             {
                 props.tasks.map(task => { return <li className="Task">{task}</li> })
             }
@@ -11,4 +11,4 @@ function Tasks(props: {tasks: string[]}) {
     )
 }
 
-export default Tasks;
+export default TasksList;
