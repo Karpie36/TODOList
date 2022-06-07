@@ -15,15 +15,17 @@ function Form(props: FormInterface) {
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault();
-        const newTasksArr = [...props.tasksArr, task];
-        props.setTasksArr(newTasksArr);
+        if(task) {
+            const newTasksArr = [...props.tasksArr, task];
+            props.setTasksArr(newTasksArr);
+        }
     }
 
     return(
         <form className="TaskForm" onSubmit={handleSubmit}>
             <label htmlFor="toDo">Task to do</label>
             <input type="text" name="toDo" onChange={handleChange}/>
-            <input type="submit" value="Submit"/>
+            <button type="submit">Add</button>
         </form>
     )
 }

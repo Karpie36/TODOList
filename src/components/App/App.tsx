@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <Form tasksArr={tasksArr} setTasksArr={setTasksArr}></Form>
-      <TasksList tasks={tasksArr}></TasksList>
+      <TasksList tasks={tasksArr} setTasksArr={setTasksArr}></TasksList>
     </div>
   );
 }

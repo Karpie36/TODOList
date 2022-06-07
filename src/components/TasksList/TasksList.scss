@@ -11,4 +11,12 @@
         width: fit-content;
         margin: auto;
     }
+
+    .DeleteTask {
+        color: red;
+        &:hover {
+            cursor: pointer;
+            opacity: 0.6;
+        }
+    }
 }
