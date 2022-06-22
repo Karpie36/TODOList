@@ -37,7 +37,7 @@ function DateTimeInput(props: DateTimeInputInterface) {
     }
 
     return (
-        <input type="datetime-local" name="taskDate" value={getDateAndTime()} min={getDateAndTime()} onChange={handleDateChange}/>
+        <input id="taskDate" type="datetime-local" name="taskDate" value={getDateAndTime()} min={getDateAndTime()} onChange={handleDateChange}/>
     )
 }
 

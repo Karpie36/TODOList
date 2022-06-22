@@ -6,7 +6,6 @@ interface TaskInputInterface {
 
 function TaskInput(props: TaskInputInterface) {
     function handleTaskChange(event: ChangeEvent<HTMLInputElement>) {
-        console.log('Callback task')
         props.setTaskString(event.target.value);
     }
 

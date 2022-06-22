@@ -1,5 +1,6 @@
 import React from "react";
 import './TasksList.scss';
+import Task from "../Task/Task";
 
 interface TasksListInterface {
     tasks: string[],
@@ -10,7 +11,6 @@ function TasksList(props: TasksListInterface) {
     function deleteTaskFromList(taskText: string) {
         const tasks = props.tasks;
         const taskToDeleteIndex = tasks.indexOf(taskText);
-        console.log(taskToDeleteIndex);
         const newTaskArr = tasks.filter((task, index) => {
             return index !== taskToDeleteIndex
         });
@@ -28,11 +28,13 @@ function TasksList(props: TasksListInterface) {
     }
 
     return (
-        <ul className="TasksList" onClick={handleDeleteTask}>
+        <div className="TasksList" onClick={handleDeleteTask}>
             {
-                props.tasks.map(task => { return <li className="Task">{task} <span className="DeleteTask">Delete</span></li> })
+                props.tasks.map((task, index) => {
+                    return <Task index={index} task={task}/>
+                })
             }
-        </ul>
+        </div>
     )
 }
 
