@@ -1,19 +1,20 @@
-import React, {ChangeEvent, useEffect} from "react";
+import React, {ChangeEvent, useEffect, useMemo} from "react";
 
 interface DateTimeInputInterface {
+    taskDateAndTime: string,
     setTaskDateAndTime: (newTaskDate: string) => void
 }
 
 function DateTimeInput(props: DateTimeInputInterface) {
     useEffect(() => {
-        props.setTaskDateAndTime(getDateAndTime());
+        props.setTaskDateAndTime(dateAndTimeNow);
     }, []);
 
     function handleDateChange(event: ChangeEvent<HTMLInputElement>) {
         props.setTaskDateAndTime(event.target.value);
     }
 
-    function getDateAndTime() {
+    const dateAndTimeNow = useMemo(function getDateAndTime() {
         const date = new Date();
 
         const year = date.getFullYear();
@@ -34,10 +35,10 @@ function DateTimeInput(props: DateTimeInputInterface) {
         console.log(dateTimeString);
         
         return dateTimeString;
-    }
+    }, [])
 
     return (
-        <input id="taskDate" type="datetime-local" name="taskDate" value={getDateAndTime()} min={getDateAndTime()} onChange={handleDateChange}/>
+        <input id="taskDate" type="datetime-local" name="taskDate" value={props.taskDateAndTime} min={dateAndTimeNow} onChange={handleDateChange}/>
     )
 }
 

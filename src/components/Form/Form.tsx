@@ -30,8 +30,8 @@ function Form(props: FormInterface) {
     return(
         <form className="TaskForm" onSubmit={handleSubmit}>
             <label htmlFor="toDo">Task to do</label>
-            <TaskInput setTaskString={setTaskString}/>
-            <DateTimeInput setTaskDateAndTime={setTaskDateAndTime}/>
+            <TaskInput taskString={taskString} setTaskString={setTaskString}/>
+            <DateTimeInput taskDateAndTime={taskDateAndTime} setTaskDateAndTime={setTaskDateAndTime}/>
             <button type="submit">Add</button>
         </form>
     )
