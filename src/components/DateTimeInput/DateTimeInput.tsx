@@ -1,12 +1,16 @@
 import React, {ChangeEvent, useEffect, useState} from "react";
+import { TupleType } from "typescript";
 
-interface DateTimeInputInterface {
-    taskDateAndTime: string,
-    setTaskDateAndTime: (newTaskDate: string) => void
+type TaskDateAndTime = {value: string, min: string};
+
+type PrevTaskDateAndTime = (state: TaskDateAndTime) => TaskDateAndTime
+
+type DateTimeInputInterface = {
+    taskDateAndTime: {value: string, min: string},
+    setTaskDateAndTime: (value: PrevTaskDateAndTime) => void,
 }
 
 function DateTimeInput(props: DateTimeInputInterface) {
-    const [minDateTime, setMinDateTime] = useState(getDateAndTime());
 
     function getRemainingSecondsToMinute() {
         const date = new Date();
@@ -14,10 +18,22 @@ function DateTimeInput(props: DateTimeInputInterface) {
     }
 
     useEffect(() => {
-        props.setTaskDateAndTime(getDateAndTime());
+        props.setTaskDateAndTime( state => {
+            return {
+                value: getDateAndTime(),
+                min: getDateAndTime()
+            }
+        }
+
+        );
 
         const minDateTimeInterval = setInterval(() => {
-            setMinDateTime(getDateAndTime());
+            props.setTaskDateAndTime( state => {
+                return {
+                    value: getDateAndTime(),
+                    min: getDateAndTime()
+                }
+            })
         }, getRemainingSecondsToMinute() * 1000);
 
         return () => {
@@ -26,7 +42,17 @@ function DateTimeInput(props: DateTimeInputInterface) {
     }, []);
 
     function handleDateChange(event: ChangeEvent<HTMLInputElement>) {
-        props.setTaskDateAndTime(event.target.value);
+        event.preventDefault();
+        event.stopPropagation();
+        props.setTaskDateAndTime(state => {
+            const dateTimeTargetValue = new Date(event.target.value);
+            const dateTimeMin = new Date(state.min);
+            const newDateTimeValue = (dateTimeTargetValue.getTime() - dateTimeMin.getTime() > 0) ? event.target.value : state.min;
+            return {
+                ...state,
+                value: newDateTimeValue,
+            }
+        });
     }
 
     function getDateAndTime() {
@@ -61,7 +87,7 @@ function DateTimeInput(props: DateTimeInputInterface) {
     }
 
     return (
-        <input id="taskDate" type="datetime-local" name="taskDate" value={props.taskDateAndTime} min={minDateTime} onChange={handleDateChange}/>
+        <input id="taskDate" type="datetime-local" name="taskDate" value={props.taskDateAndTime.value} min={props.taskDateAndTime.min} onChange={handleDateChange}/>
     )
 }
 

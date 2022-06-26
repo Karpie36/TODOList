@@ -8,19 +8,21 @@ interface FormInterface {
     setTasksArr: (newTasks: string[]) => void
 }
 
+interface TaskDateAndTime {value: string, min: string}
+
 function Form(props: FormInterface) {
     const [taskString, setTaskString] = useState('');
-    const [taskDateAndTime, setTaskDateAndTime] = useState('');
+    const [taskDateAndTime, setTaskDateAndTime] = useState<TaskDateAndTime>({ value: '', min: ''});
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault();
         const taskArr = props.tasksArr;
         if(taskString) {
-            const [taskDate, taskTime] = taskDateAndTime.split('T');
+            const [taskDate, taskTime] = taskDateAndTime['value'].split('T');
             const task = [taskString, taskDate, taskTime].join(' ');
             if(taskArr.includes(task)) {
-                 alert("Task has already been created. Don't make duplicates.");
-                 return -1;
+                alert("Task has already been created. Don't make duplicates.");
+                return -1;
             }
             const newTasksArr = [...props.tasksArr, task];
             props.setTasksArr(newTasksArr);
