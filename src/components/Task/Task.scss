@@ -1,15 +1,18 @@
+$table_spaces: 4px;
 
 .Task {
     display: grid;
-    grid-template-columns: 30px 1fr 70px;
-    gap: 4px;
+    grid-template-columns: max-content 1fr max-content;
+    gap: $table_spaces;
+    padding: $table_spaces $table_spaces 0 $table_spaces;
+    max-width: fit-content;
     div {
         display: grid;
         justify-content: center;
-        margin: 2px 0;
-        padding: 3px 0;
+        align-items: center;
         background-color: #fff;
         border-radius: 2px;
+        padding: 3px 10px;
     }
 }
 

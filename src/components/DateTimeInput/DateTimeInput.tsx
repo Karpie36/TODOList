@@ -1,5 +1,4 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
-import { TupleType } from "typescript";
+import React, {ChangeEvent, useEffect} from "react";
 
 type TaskDateAndTime = {value: string, min: string};
 
@@ -19,19 +18,23 @@ function DateTimeInput(props: DateTimeInputInterface) {
 
     useEffect(() => {
         props.setTaskDateAndTime( state => {
+            const currentDateAndTime = getDateAndTime();
             return {
-                value: getDateAndTime(),
-                min: getDateAndTime()
+                value: currentDateAndTime,
+                min: currentDateAndTime
             }
         }
-
-        );
+    );
 
         const minDateTimeInterval = setInterval(() => {
             props.setTaskDateAndTime( state => {
+                const currentDateTime = getDateAndTime();
+                const dateValueObject = new Date(state.value);
+                const currentDateObject = new Date(currentDateTime);
+                const dateTimeValue = (dateValueObject.getTime() - currentDateObject.getTime() > 0) ? state.value : currentDateTime;
                 return {
-                    value: getDateAndTime(),
-                    min: getDateAndTime()
+                    value: dateTimeValue,
+                    min: currentDateTime
                 }
             })
         }, getRemainingSecondsToMinute() * 1000);
