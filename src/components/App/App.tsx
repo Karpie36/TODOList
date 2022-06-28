@@ -4,7 +4,7 @@ import Form from '../Form/Form';
 import TasksList from '../TasksList/TasksList';
 
 function App() {
-  const [tasksArr, setTasksArr] = useState<string[]>([]);
+  const [tasksArr, setTasksArr] = useState<(string[])[]>([]);
 
   return (
     <div className="App">

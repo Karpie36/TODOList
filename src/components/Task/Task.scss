@@ -2,10 +2,9 @@ $table_spaces: 4px;
 
 .Task {
     display: grid;
-    grid-template-columns: max-content 1fr max-content;
+    grid-template-columns: max-content 1fr max-content max-content max-content;
     gap: $table_spaces;
     padding: $table_spaces $table_spaces 0 $table_spaces;
-    max-width: fit-content;
     div {
         display: grid;
         justify-content: center;
