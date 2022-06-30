@@ -2,7 +2,7 @@ $table_spaces: 4px;
 
 .Task {
     display: grid;
-    grid-template-columns: max-content 1fr max-content max-content max-content;
+    grid-template-columns: 2em 1fr repeat(3, max-content);
     gap: $table_spaces;
     padding: $table_spaces $table_spaces 0 $table_spaces;
     div {

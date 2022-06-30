@@ -10,7 +10,6 @@ function TasksList() {
         event.preventDefault();
         event.stopPropagation();
         const newTasks = tasks.filter((t, id) => {
-            console.log(index, id);
             return id !== index;
         });
         setTasks(newTasks);
@@ -20,7 +19,7 @@ function TasksList() {
         <div className="TasksList">
             {
                 tasks.map((task, index) => {
-                    return <Task index={index+1} description={task.description} date={task.date} time={task.time} handleDelete={(e) => { handleDeleteTask(e, index) } }/>
+                    return <Task index={index+1} description={task.description} date={task.date} time={task.time} handleDelete={(e) => handleDeleteTask(e, index) }/>
                 })
             }
         </div>

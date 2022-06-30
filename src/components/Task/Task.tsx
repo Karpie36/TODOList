@@ -1,6 +1,7 @@
 import React from "react";
 import "./Task.scss";
 
+
 interface TaskProps {
     index: number,
     description: string,
