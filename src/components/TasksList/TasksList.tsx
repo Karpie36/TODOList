@@ -4,32 +4,23 @@ import Task from "../Task/Task";
 import {useTasksContext} from "../App/App"
 
 function TasksList() {
-    const {tasks} = useTasksContext();
-    
-    // function deleteTaskFromList(taskText: string) {
-    //     const tasks = props.tasks;
-    //     const taskToDeleteIndex = tasks.indexOf(taskText);
-    //     const newTaskArr = tasks.filter((task, index) => {
-    //         return index !== taskToDeleteIndex
-    //     });
-    //     props.setTasksArr(newTaskArr);
-    // }
+    const {tasks, setTasks} = useTasksContext();
 
-    // function handleDeleteTask(event: React.MouseEvent<Element, MouseEvent>) {
-    //     event.preventDefault();
-    //     const targetElement = event.target as HTMLElement;
-    //     if(targetElement.classList.contains("DeleteTask")) {
-    //         let taskText = targetElement.parentElement?.innerText;
-    //         taskText = taskText && taskText.replace(' Delete', '');
-    //         deleteTaskFromList(taskText as string);
-    //     }
-    // }
+    function handleDeleteTask(event: React.MouseEvent, index: number) {
+        event.preventDefault();
+        event.stopPropagation();
+        const newTasks = tasks.filter((t, id) => {
+            console.log(index, id);
+            return id !== index;
+        });
+        setTasks(newTasks);
+    }
 
     return (
         <div className="TasksList">
             {
                 tasks.map((task, index) => {
-                    return <Task index={index} description={task.description} date={task.date} time={task.time}/>
+                    return <Task index={index+1} description={task.description} date={task.date} time={task.time} handleDelete={(e) => { handleDeleteTask(e, index) } }/>
                 })
             }
         </div>

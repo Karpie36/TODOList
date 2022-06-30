@@ -84,7 +84,6 @@ function DateTimeInput(props: DateTimeInputInterface) {
             ? minutes
             : [0,minutes].join('')
         }`;
-        console.log(dateTimeString);
         
         return dateTimeString;
     }
