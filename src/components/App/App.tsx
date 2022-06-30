@@ -1,15 +1,35 @@
-import React, {useState} from 'react';
-import './App.scss';
-import Form from '../Form/Form';
-import TasksList from '../TasksList/TasksList';
+import React, { useContext, useState } from "react";
+import "./App.scss";
+import Form from "../Form/Form";
+import TasksList from "../TasksList/TasksList";
+
+export type TaskType = {
+  description: string;
+  date: string;
+  time: string;
+};
+
+type TasksContent = {
+  tasks: TaskType[],
+  setTasks: (newTasks: TaskType[]) => void
+}
+
+const TasksContext = React.createContext<TasksContent>({
+  tasks: [],
+  setTasks: () => {}
+})
+
+export const useTasksContext = () => useContext(TasksContext);
 
 function App() {
-  const [tasksArr, setTasksArr] = useState<(string[])[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
 
   return (
     <div className="App">
-      <Form tasksArr={tasksArr} setTasksArr={setTasksArr}></Form>
-      <TasksList tasks={tasksArr} setTasksArr={setTasksArr}></TasksList>
+      <TasksContext.Provider value={{tasks, setTasks}}>
+        <Form></Form>
+        <TasksList></TasksList>
+      </TasksContext.Provider>
     </div>
   );
 }

@@ -1,13 +1,11 @@
 import React from "react";
 import './TasksList.scss';
 import Task from "../Task/Task";
+import {useTasksContext} from "../App/App"
 
-interface TasksListInterface {
-    tasks: (string[])[],
-    setTasksArr: (newTasks: (string[])[]) => void
-}
-
-function TasksList(props: TasksListInterface) {
+function TasksList() {
+    const {tasks} = useTasksContext();
+    
     // function deleteTaskFromList(taskText: string) {
     //     const tasks = props.tasks;
     //     const taskToDeleteIndex = tasks.indexOf(taskText);
@@ -30,8 +28,8 @@ function TasksList(props: TasksListInterface) {
     return (
         <div className="TasksList">
             {
-                props.tasks.map((task, index) => {
-                    return <Task index={index} taskString={task[0]} taskDate={task[1]} taskTime={task[2]}/>
+                tasks.map((task, index) => {
+                    return <Task index={index} description={task.description} date={task.date} time={task.time}/>
                 })
             }
         </div>
