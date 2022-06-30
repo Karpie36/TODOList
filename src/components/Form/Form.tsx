@@ -20,7 +20,7 @@ function Form() {
                 date: taskDate,
                 time: taskTime
             };
-            if(tasks.includes(task)) {
+            if( tasks.some(t => JSON.stringify(t) === JSON.stringify(task) ) ) {
                 alert("Task has already been created. Don't make duplicates.");
                 return -1;
             }
