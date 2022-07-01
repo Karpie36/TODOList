@@ -25,6 +25,21 @@ function Form() {
                 return -1;
             }
             const newTasksArr = [...tasks, task];
+            newTasksArr.sort((t1, t2) => {
+                if(t1.date < t2.date) {
+                    return -1;
+                }
+                if(t1.date > t2.date) {
+                    return 1;
+                }
+                if(t1.time < t2.time) {
+                    return -1;
+                }
+                if(t1.time > t2.time) {
+                    return 1;
+                }
+                return 0;
+            })
             setTasks(newTasksArr);
         }
     }
