@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from "react";
+import React from "react";
 
 type TaskDateAndTime = {value: string, min: string};
 
@@ -16,7 +16,7 @@ function DateTimeInput(props: DateTimeInputInterface) {
         return (60 - date.getSeconds() + 1);
     }
 
-    useEffect(() => {
+    React.useEffect(() => {
         props.setTaskDateAndTime( state => {
             const currentDateAndTime = getDateAndTime();
             return {
@@ -44,7 +44,7 @@ function DateTimeInput(props: DateTimeInputInterface) {
         }
     }, []);
 
-    function handleDateChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleDateChange(event: React.ChangeEvent<HTMLInputElement>) {
         event.preventDefault();
         event.stopPropagation();
         props.setTaskDateAndTime(state => {
@@ -93,4 +93,4 @@ function DateTimeInput(props: DateTimeInputInterface) {
     )
 }
 
-export default DateTimeInput;
+export default React.memo(DateTimeInput);

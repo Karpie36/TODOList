@@ -1,6 +1,6 @@
 import React from "react";
 import "./Task.scss";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteIcon from '@mui/icons-material/DeleteForever';
 
 interface TaskProps {
     index: number,
@@ -18,7 +18,7 @@ function Task(props: TaskProps) {
         <div>{props.date}</div>
         <div>{props.time}</div>
         <div className="DeleteTask" onClick={props.handleDelete} >
-            <DeleteForeverIcon ></DeleteForeverIcon>
+            <DeleteIcon ></DeleteIcon>
         </div>
         
     </div>

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from "react";
+import React from "react";
 import './Form.scss';
 import TaskInput from "../TaskInput/TaskInput";
 import DateTimeInput from '../DateTimeInput/DateTimeInput';
@@ -7,11 +7,15 @@ import {useTasksContext} from "../App/App";
 interface TaskDateAndTime {value: string, min: string}
 
 function Form() {
-    const [taskDescription, setTaskDescription] = useState('');
-    const [taskDateAndTime, setTaskDateAndTime] = useState<TaskDateAndTime>({ value: '', min: ''});
+    const [taskDescription, setTaskDescription] = React.useState('');
+    const [taskDateAndTime, setTaskDateAndTime] = React.useState<TaskDateAndTime>({ value: '', min: ''});
     const {tasks, setTasks} = useTasksContext();
 
-    function handleSubmit(event: FormEvent) {
+    React.useEffect(() => {
+        setTaskDescription("");
+    }, [tasks]);
+
+    function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
         if(taskDescription) {
             const [taskDate, taskTime] = taskDateAndTime['value'].split('T');

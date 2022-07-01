@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useCallback} from "react";
+import React from "react";
 
 interface TaskInputInterface {
     taskString: string,
@@ -6,7 +6,8 @@ interface TaskInputInterface {
 }
 
 function TaskInput(props: TaskInputInterface) {
-    function handleTaskChange(event: ChangeEvent<HTMLInputElement>) {
+    
+    function handleTaskChange(event: React.ChangeEvent<HTMLInputElement>) {
         props.setTaskString(event.target.value);
     }
 
@@ -15,4 +16,4 @@ function TaskInput(props: TaskInputInterface) {
     )
 }
 
-export default TaskInput;
+export default React.memo(TaskInput);

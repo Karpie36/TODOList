@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import "./App.scss";
 import Form from "../Form/Form";
 import TasksList from "../TasksList/TasksList";
@@ -19,10 +19,10 @@ const TasksContext = React.createContext<TasksContent>({
   setTasks: () => {}
 })
 
-export const useTasksContext = () => useContext(TasksContext);
+export const useTasksContext = () => React.useContext(TasksContext);
 
 function App() {
-  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [tasks, setTasks] = React.useState<TaskType[]>([]);
 
   return (
     <div className="App">
